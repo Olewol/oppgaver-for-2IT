@@ -1,0 +1,261 @@
+---
+export interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const fag = [
+  {
+    slug: "driftsstotte",
+    navn: "Driftsstøtte",
+    beskrivelse: "Nettverk, serverdrift, sikkerhet, virtualisering",
+    ikon: "🖥",
+    farge: "#6c8cff",
+  },
+  {
+    slug: "brukerstotte",
+    navn: "Brukerstøtte",
+    beskrivelse: "Service, veiledning, dokumentasjon, kurs",
+    ikon: "💬",
+    farge: "#4ade80",
+  },
+  {
+    slug: "utvikling",
+    navn: "Utvikling",
+    beskrivelse: "Programmering, web, databaser, versjonskontroll",
+    ikon: "⚡",
+    farge: "#fbbf24",
+  },
+];
+---
+
+<aside class="sidebar">
+  <div class="logo">
+    <a href="/oppgaver-for-2IT/">
+      <span class="logo-icon">📚</span>
+      <div class="logo-text">
+        <span class="logo-title">Oppgaver for 2IT</span>
+        <span class="logo-sub">VG2 Informasjonsteknologi</span>
+      </div>
+    </a>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-section">
+      <span class="nav-section-title">Programfag</span>
+      {
+        fag.map((f) => (
+          <a
+            href={`/oppgaver-for-2IT/${f.slug}/`}
+            class:list={[
+              "nav-item",
+              { "nav-item--active": currentPath.startsWith(`/${f.slug}`) },
+            ]}
+          >
+            <span class="nav-icon">{f.ikon}</span>
+            <div class="nav-text">
+              <span class="nav-name">{f.navn}</span>
+              <span class="nav-desc">{f.beskrivelse}</span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="nav-section">
+      <span class="nav-section-title">Ressurser</span>
+      <a
+        href="/oppgaver-for-2IT/"
+        class:list={["nav-item", { "nav-item--active": currentPath === "/" }]}
+      >
+        <span class="nav-icon">🏠</span>
+        <span class="nav-name">Hjem</span>
+      </a>
+      <a
+        href="https://ndla.no/f/driftsstotte-im-itk-vg2/2c20017628cc"
+        target="_blank"
+        class="nav-item"
+      >
+        <span class="nav-icon">📖</span>
+        <span class="nav-name">NDLA Driftsstøtte</span>
+      </a>
+      <a
+        href="https://ndla.no/f/brukerstotte-im-itk-vg2/b678ae6a074d"
+        target="_blank"
+        class="nav-item"
+      >
+        <span class="nav-icon">📖</span>
+        <span class="nav-name">NDLA Brukerstøtte</span>
+      </a>
+      <a
+        href="https://ndla.no/f/utvikling-im-itk-vg2/17e6fbba25ef"
+        target="_blank"
+        class="nav-item"
+      >
+        <span class="nav-icon">📖</span>
+        <span class="nav-name">NDLA Utvikling</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <a
+      href="https://github.com/Olewol/oppgaver-for-2IT"
+      target="_blank"
+      class="github-link"
+    >
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+      </svg>
+      <span>GitHub</span>
+    </a>
+  </div>
+</aside>
+
+<style>
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    background: var(--bg-surface);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    overflow-y: auto;
+  }
+
+  .logo {
+    padding: 20px 16px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .logo-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .nav {
+    flex: 1;
+    padding: 12px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .nav-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .nav-section-title {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    padding: 0 12px 6px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: background 0.12s ease, color 0.12s ease;
+    color: var(--text-secondary);
+  }
+
+  .nav-item:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+  }
+
+  .nav-item--active {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .nav-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+    width: 20px;
+    text-align: center;
+  }
+
+  .nav-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+  }
+
+  .nav-name {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .nav-desc {
+    font-size: 11px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .sidebar-footer {
+    padding: 12px 8px;
+    border-top: 1px solid var(--border);
+  }
+
+  .github-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+
+  .github-link:hover {
+    color: var(--text-primary);
+    background: var(--bg-hover);
+  }
+</style>

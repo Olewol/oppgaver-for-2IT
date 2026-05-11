@@ -1,0 +1,340 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Sidebar from "../../components/Sidebar.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const oppgaver = await getCollection("oppgaver");
+  return oppgaver
+    .filter((o) => o.data.publisert)
+    .map((o) => {
+      // Extract filename from slug (content collections include subdirs)
+      const slugParts = o.slug.split("/");
+      const oppgaveSlug = slugParts[slugParts.length - 1];
+      return {
+        params: { fag: o.data.fag, oppgave: oppgaveSlug },
+        props: { entry: o },
+      };
+    });
+}
+
+const { entry } = Astro.props;
+const { data, body } = entry;
+
+const vanskFarger: Record<string, string> = {
+  nybegynner: "var(--green)",
+  middels: "var(--amber)",
+  avansert: "var(--rose)",
+};
+
+const fagNavn: Record<string, string> = {
+  driftsstotte: "Driftsstøtte",
+  brukerstotte: "Brukerstøtte",
+  utvikling: "Utvikling",
+};
+
+const fagIkon: Record<string, string> = {
+  driftsstotte: "🖥",
+  brukerstotte: "💬",
+  utvikling: "⚡",
+};
+---
+
+<BaseLayout title={`${data.title} - Oppgaver for 2IT`}>
+  <div class="layout">
+    <Sidebar currentPath={`/${data.fag}/${entry.slug}`} />
+    <main class="main">
+      <div class="breadcrumb">
+        <a href="/oppgaver-for-2IT/">Hjem</a>
+        <span class="sep">/</span>
+        <a href={`/oppgaver-for-2IT/${data.fag}/`}>{fagNavn[data.fag]}</a>
+        <span class="sep">/</span>
+        <span class="current">{data.title}</span>
+      </div>
+
+      <article class="oppgave">
+        <header class="oppgave-header">
+          <div class="oppgave-badges">
+            <span class="fag-badge">{fagIkon[data.fag]} {fagNavn[data.fag]}</span>
+            <span
+              class="vansk-badge"
+              style={`background: ${vanskFarger[data.vanskelighetsgrad]}18; color: ${vanskFarger[data.vanskelighetsgrad]}`}
+            >
+              {data.vanskelighetsgrad === "nybegynner" ? "Nybegynner" : data.vanskelighetsgrad === "middels" ? "Middels" : "Avansert"}
+            </span>
+            {data.varighet && <span class="varighet-badge">⏱ {data.varighet}</span>}
+          </div>
+
+          <h1 class="oppgave-tittel">{data.title}</h1>
+
+          <div class="oppgave-meta">
+            <div class="meta-block">
+              <span class="meta-label">Emne</span>
+              <span class="meta-value">{data.emne}</span>
+            </div>
+            <div class="meta-block">
+              <span class="meta-label">Kompetansemål</span>
+              <div class="km-tags">
+                {data.kompetansemaal.map((km) => <span class="km-tag">{km}</span>)}
+              </div>
+            </div>
+            {data.tags.length > 0 && (
+              <div class="meta-block">
+                <span class="meta-label">Stikkord</span>
+                <div class="tags">
+                  {data.tags.map((tag) => <span class="tag">{tag}</span>)}
+                </div>
+              </div>
+            )}
+          </div>
+        </header>
+
+        <div class="oppgave-innhold">
+          <Fragment set:html={body} />
+        </div>
+      </article>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .layout {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  .main {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    max-width: 860px;
+    padding: 32px 48px 80px;
+  }
+
+  .breadcrumb {
+    font-size: 13px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .breadcrumb a {
+    color: var(--text-muted);
+  }
+
+  .breadcrumb a:hover {
+    color: var(--accent);
+  }
+
+  .sep {
+    color: var(--text-muted);
+  }
+
+  .current {
+    color: var(--text-secondary);
+  }
+
+  .oppgave-header {
+    margin-bottom: 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .oppgave-badges {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .fag-badge,
+  .vansk-badge,
+  .varighet-badge {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+
+  .fag-badge {
+    background: var(--bg-hover);
+    color: var(--text-secondary);
+  }
+
+  .vansk-badge {
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .varighet-badge {
+    background: var(--bg-hover);
+    color: var(--text-muted);
+  }
+
+  .oppgave-tittel {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+  }
+
+  .oppgave-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .meta-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .meta-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+  }
+
+  .meta-value {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .km-tags {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .km-tag {
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--accent)12;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .tags {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--bg-hover);
+    color: var(--text-muted);
+  }
+
+  .oppgave-innhold {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-primary);
+  }
+
+  .oppgave-innhold :deep(h2) {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .oppgave-innhold :deep(h3) {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 28px;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+  }
+
+  .oppgave-innhold :deep(p) {
+    margin-bottom: 16px;
+    color: var(--text-secondary);
+  }
+
+  .oppgave-innhold :deep(ul),
+  .oppgave-innhold :deep(ol) {
+    margin-bottom: 16px;
+    padding-left: 24px;
+    color: var(--text-secondary);
+  }
+
+  .oppgave-innhold :deep(li) {
+    margin-bottom: 6px;
+  }
+
+  .oppgave-innhold :deep(strong) {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .oppgave-innhold :deep(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+
+  .oppgave-innhold :deep(th) {
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    font-weight: 600;
+    text-align: left;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+  }
+
+  .oppgave-innhold :deep(td) {
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+
+  .oppgave-innhold :deep(pre) {
+    background: var(--bg-elevated) !important;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    margin: 16px 0;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .oppgave-innhold :deep(code) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+  }
+
+  .oppgave-innhold :deep(blockquote) {
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    margin: 16px 0;
+    background: var(--bg-elevated);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    color: var(--text-secondary);
+  }
+
+  .oppgave-innhold :deep(hr) {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 32px 0;
+  }
+
+  .oppgave-innhold :deep(a) {
+    color: var(--accent);
+  }
+</style>

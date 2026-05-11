@@ -1,0 +1,97 @@
+---
+---
+
+<!DOCTYPE html>
+<html lang="nb">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Oppgaver for VG2 Informasjonsteknologi" />
+    <link rel="icon" type="image/svg+xml" href="/oppgaver-for-2IT/favicon.svg" />
+    <title>{Astro.props.title} | Oppgaver for 2IT</title>
+
+    <!-- Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JetBrains Mono for code -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg-base: #0b0d11;
+        --bg-surface: #12141a;
+        --bg-elevated: #1a1d27;
+        --bg-hover: #222639;
+        --border: #2a2e3f;
+        --border-light: #353a50;
+        --text-primary: #e8eaf0;
+        --text-secondary: #9ba1b4;
+        --text-muted: #6b7084;
+        --accent: #6c8cff;
+        --accent-hover: #8ba6ff;
+        --accent-dim: #4a6adc;
+        --green: #4ade80;
+        --amber: #fbbf24;
+        --rose: #fb7185;
+        --cyan: #22d3ee;
+        --purple: #a78bfa;
+        --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+        --font-mono: "JetBrains Mono", "Fira Code", monospace;
+        --radius-sm: 6px;
+        --radius-md: 10px;
+        --radius-lg: 16px;
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+        --sidebar-width: 260px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        background: var(--bg-base);
+        color: var(--text-primary);
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+        transition: color 0.15s ease;
+      }
+
+      a:hover {
+        color: var(--accent-hover);
+      }
+
+      ::selection {
+        background: var(--accent-dim);
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

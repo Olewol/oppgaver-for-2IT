@@ -1,0 +1,214 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Sidebar from "../../components/Sidebar.astro";
+import TaskCard from "../../components/TaskCard.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const fag = ["driftsstotte", "brukerstotte", "utvikling"];
+  return fag.map((f) => ({
+    params: { fag: f },
+    props: { fagSlug: f },
+  }));
+}
+
+const { fagSlug } = Astro.props;
+
+const fagInfo = {
+  driftsstotte: {
+    navn: "Driftsstøtte",
+    ikon: "🖥",
+    farge: "#6c8cff",
+    beskrivelse: "Planlegge, implementere og drifte fysiske og virtuelle IT-løsninger med fokus på sikkerhet, segmenterte nettverk, skytjenester og automatisering.",
+    kompetansemaal: ["km-01: Utforske komponenter i driftsarkitektur", "km-02: Segmenterte nettverk", "km-03: Skytjenester og virtualisering", "km-04: Bruker- og tilgangsstyring", "km-05: Nettverksprotokoller", "km-06: Planlegge og dokumentere", "km-07: Trusler mot datasikkerhet", "km-08: Risikoanalyse", "km-09: Automatisering", "km-10: Sikre IT-løsninger", "km-11: Personvernrefleksjon", "km-12: Bærekraft"],
+  },
+  brukerstotte: {
+    navn: "Brukerstøtte",
+    ikon: "💬",
+    farge: "#4ade80",
+    beskrivelse: "Service, veiledning og opplæring — kommunikasjon, feilsøking, dokumentasjon, kurs og kvalitetssikring for IT-systemer.",
+    kompetansemaal: ["km-01: Etikk og lovverk", "km-02: Brukerstøtte og veiledning", "km-03: Utvikle veiledninger", "km-04: Kurs og opplæring", "km-05: Kommunikasjon og fagterminologi", "km-06: Feilsøking", "km-07: Kvalitetssikring", "km-08: Krevende situasjoner", "km-09: Intelligente systemer", "km-10: Samhandlingsverktøy", "km-11: Yrkesfellesskap"],
+  },
+  utvikling: {
+    navn: "Utvikling",
+    ikon: "⚡",
+    farge: "#fbbf24",
+    beskrivelse: "Designe og utvikle IT-løsninger — programmering, webapplikasjoner, databaser, versjonskontroll, testing og innebygget sikkerhet.",
+    kompetansemaal: ["km-01: Programmeringsspråk og algoritmer", "km-02: Funksjonelle krav", "km-03: Brukergrensesnitt", "km-04: Teknisk dokumentasjon", "km-05: Versjonskontroll", "km-06: Innebygget personvern", "km-07: Innebygget sikkerhet", "km-08: Testing", "km-09: Databasemodellering", "km-10: Datalagringsmodeller"],
+  },
+};
+
+const info = fagInfo[fagSlug];
+
+const oppgaver = (await getCollection("oppgaver"))
+  .filter((o) => o.data.fag === fagSlug && o.data.publisert)
+  .map((o) => {
+    const slugParts = o.slug.split("/");
+    const oppgaveSlug = slugParts[slugParts.length - 1];
+    return { ...o, taskSlug: `${o.data.fag}/${oppgaveSlug}` };
+  });
+---
+
+<BaseLayout title={`${info.navn} - Oppgaver for 2IT`}>
+  <div class="layout">
+    <Sidebar currentPath={`/${fagSlug}`} />
+    <main class="main">
+      <div class="fag-header">
+        <div class="fag-icon" style={`background: ${info.farge}15; color: ${info.farge}`}>
+          {info.ikon}
+        </div>
+        <div>
+          <h1 class="fag-title">{info.navn}</h1>
+          <p class="fag-desc">{info.beskrivelse}</p>
+          <div class="fag-meta">
+            <span class="fag-count">{oppgaver.length} oppgaver</span>
+            <span class="fag-count">{info.kompetansemaal.length} kompetansemål</span>
+          </div>
+        </div>
+      </div>
+
+      <section class="km-section">
+        <h2 class="section-title">Kompetansemål</h2>
+        <div class="km-list">
+          {info.kompetansemaal.map((km) => (
+            <div class="km-item">{km}</div>
+          ))}
+        </div>
+      </section>
+
+      <section class="oppgaver-section">
+        <h2 class="section-title">Oppgaver</h2>
+        {oppgaver.length > 0 ? (
+          <div class="oppgave-grid">
+            {oppgaver.map((o) => (
+              <TaskCard
+                title={o.data.title}
+                fag={o.data.fag}
+                fagNavn={o.data.fag}
+                emne={o.data.emne}
+                kompetansemaal={o.data.kompetansemaal}
+                vanskelighetsgrad={o.data.vanskelighetsgrad}
+                varighet={o.data.varighet}
+                tags={o.data.tags}
+                slug={o.taskSlug}
+                body={o.body}
+              />
+            ))}
+          </div>
+        ) : (
+          <div class="tomt">
+            <p>Ingen oppgaver publisert for dette faget ennå. Oppgaver kommer fortløpende.</p>
+          </div>
+        )}
+      </section>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .layout {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  .main {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    max-width: 960px;
+    padding: 48px 48px 80px;
+  }
+
+  .fag-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .fag-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    flex-shrink: 0;
+  }
+
+  .fag-title {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+  }
+
+  .fag-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 12px;
+    max-width: 600px;
+  }
+
+  .fag-meta {
+    display: flex;
+    gap: 16px;
+  }
+
+  .fag-count {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .km-section {
+    margin-bottom: 48px;
+  }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: var(--text-primary);
+  }
+
+  .km-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 6px;
+  }
+
+  .km-item {
+    font-size: 13px;
+    padding: 8px 12px;
+    background: var(--bg-elevated);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+  }
+
+  .oppgaver-section {
+    margin-bottom: 48px;
+  }
+
+  .oppgave-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+  }
+
+  .tomt {
+    padding: 32px;
+    text-align: center;
+    background: var(--bg-surface);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-md);
+  }
+
+  .tomt p {
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+</style>

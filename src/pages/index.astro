@@ -1,0 +1,212 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Sidebar from "../components/Sidebar.astro";
+import FagCard from "../components/FagCard.astro";
+import TaskCard from "../components/TaskCard.astro";
+import { getCollection } from "astro:content";
+
+const oppgaver = await getCollection("oppgaver");
+
+// Pre-compute slugs for navigation
+const oppgaverMedSlug = oppgaver
+  .filter((o) => o.data.publisert)
+  .map((o) => {
+    const slugParts = o.slug.split("/");
+    const oppgaveSlug = slugParts[slugParts.length - 1];
+    return { ...o, taskSlug: `${o.data.fag}/${oppgaveSlug}` };
+  });
+
+const fag = {
+  driftsstotte: {
+    navn: "Driftsstøtte",
+    ikon: "🖥",
+    beskrivelse: "Planlegge, implementere og drifte sikre IT-løsninger — nettverk, servere, skytjenester, virtualisering, sikkerhet og automatisering.",
+    farge: "#6c8cff",
+    kompetansemaal: ["km-01", "km-02", "km-03", "km-04", "km-05", "km-06", "km-07", "km-08", "km-09", "km-10", "km-11", "km-12"],
+  },
+  brukerstotte: {
+    navn: "Brukerstøtte",
+    ikon: "💬",
+    beskrivelse: "Service, veiledning og opplæring — kommunikasjon, feilsøking, dokumentasjon, kurs og kvalitetssikring.",
+    farge: "#4ade80",
+    kompetansemaal: ["km-01", "km-02", "km-03", "km-04", "km-05", "km-06", "km-07", "km-08", "km-09", "km-10", "km-11"],
+  },
+  utvikling: {
+    navn: "Utvikling",
+    ikon: "⚡",
+    beskrivelse: "Designe og utvikle IT-løsninger — programmering, webapplikasjoner, databaser, versjonskontroll og testing.",
+    farge: "#fbbf24",
+    kompetansemaal: ["km-01", "km-02", "km-03", "km-04", "km-05", "km-06", "km-07", "km-08", "km-09", "km-10"],
+  },
+};
+
+const nyesteOppgaver = oppgaverMedSlug.slice(0, 6);
+---
+
+<BaseLayout title="Hjem">
+  <div class="layout">
+    <Sidebar currentPath={Astro.url.pathname} />
+    <main class="main">
+      <div class="hero">
+        <h1 class="hero-title">Oppgaver for 2IT</h1>
+        <p class="hero-desc">
+          Praksisnære oppgaver for VG2 Informasjonsteknologi — utviklet for å gi
+          elevene relevante, utfordrende og meningsfulle læringsopplevelser.
+        </p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num">{oppgaverMedSlug.length}</span>
+            <span class="hero-stat-label">Oppgaver</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">3</span>
+            <span class="hero-stat-label">Programfag</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">33</span>
+            <span class="hero-stat-label">Kompetansemål</span>
+          </div>
+        </div>
+      </div>
+
+      <section class="section">
+        <h2 class="section-title">Programfag</h2>
+        <div class="fag-grid">
+          {Object.entries(fag).map(([slug, data]) => (
+            <FagCard
+              navn={data.navn}
+              slug={slug}
+              ikon={data.ikon}
+              beskrivelse={data.beskrivelse}
+              farge={data.farge}
+              oppgaveTell={oppgaverMedSlug.filter((o) => o.data.fag === slug).length}
+              kompetansemaal={data.kompetansemaal}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Siste oppgaver</h2>
+        <div class="oppgave-grid">
+          {nyesteOppgaver.map((o) => (
+            <TaskCard
+              title={o.data.title}
+              fag={o.data.fag}
+              fagNavn={o.data.fag}
+              emne={o.data.emne}
+              kompetansemaal={o.data.kompetansemaal}
+              vanskelighetsgrad={o.data.vanskelighetsgrad}
+              varighet={o.data.varighet}
+              tags={o.data.tags}
+              slug={o.taskSlug}
+              body={o.body}
+            />
+          ))}
+        </div>
+      </section>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .layout {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  .main {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    max-width: 960px;
+    padding: 48px 48px 80px;
+  }
+
+  .hero {
+    margin-bottom: 60px;
+  }
+
+  .hero-title {
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-desc {
+    font-size: 17px;
+    color: var(--text-secondary);
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .hero-stat-num {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .hero-stat-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .section {
+    margin-bottom: 48px;
+  }
+
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+  }
+
+  .fag-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .oppgave-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .main {
+      margin-left: 0;
+      padding: 24px 16px;
+    }
+    .hero-title {
+      font-size: 28px;
+    }
+    .oppgave-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero-stats {
+      gap: 20px;
+    }
+  }
+</style>

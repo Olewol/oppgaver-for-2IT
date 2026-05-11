@@ -1,0 +1,153 @@
+---
+export interface Props {
+  title: string;
+  fag: string;
+  fagNavn: string;
+  emne: string;
+  kompetansemaal: string[];
+  vanskelighetsgrad: string;
+  varighet?: string;
+  tags: string[];
+  slug: string;
+  body: string;
+}
+
+const { title, fagNavn, emne, vanskelighetsgrad, varighet, tags, slug, body } = Astro.props;
+
+const vanskFarger: Record<string, string> = {
+  nybegynner: "var(--green)",
+  middels: "var(--amber)",
+  avansert: "var(--rose)",
+};
+
+const fagIkoner: Record<string, string> = {
+  driftsstotte: "🖥",
+  brukerstotte: "💬",
+  utvikling: "⚡",
+};
+---
+
+<a href={`/oppgaver-for-2IT/${slug}`} class="task-card">
+  <div class="card-header">
+    <span class="fag-badge" style={`background: ${vanskFarger[vanskelighetsgrad]}18; color: ${vanskFarger[vanskelighetsgrad]}`}>
+      {vanskelighetsgrad === "nybegynner" ? "Nybegynner" : vanskelighetsgrad === "middels" ? "Middels" : "Avansert"}
+    </span>
+    {varighet && <span class="varighet">{fagIkoner[fagNavn.toLowerCase()]} {varighet}</span>}
+  </div>
+  <h3 class="card-title">{title}</h3>
+  <div class="card-meta">
+    <span class="emne-tag">{emne}</span>
+  </div>
+  <div class="card-body">
+    {body && <Fragment set:html={body.slice(0, 200).replace(/[#*\[\]]/g, "")} />}
+  </div>
+  <div class="card-footer">
+    <div class="tags">
+      {tags.slice(0, 3).map((tag) => <span class="tag">{tag}</span>)}
+    </div>
+    <span class="les-mer">Les oppgave →</span>
+  </div>
+</a>
+
+<style>
+  .task-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+  }
+
+  .task-card:hover {
+    border-color: var(--border-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+  }
+
+  .fag-badge {
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .varighet {
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+
+  .card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+  }
+
+  .card-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .emne-tag {
+    font-size: 12px;
+    color: var(--accent);
+    background: var(--accent-dim)15;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .card-body {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+
+  .tags {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: var(--bg-hover);
+    color: var(--text-muted);
+  }
+
+  .les-mer {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+</style>

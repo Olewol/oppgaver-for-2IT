@@ -1,0 +1,70 @@
+{
+  "$ref": "#/definitions/oppgaver",
+  "definitions": {
+    "oppgaver": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "fag": {
+          "type": "string",
+          "enum": [
+            "driftsstotte",
+            "brukerstotte",
+            "utvikling"
+          ]
+        },
+        "emne": {
+          "type": "string"
+        },
+        "kompetansemaal": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "vanskelighetsgrad": {
+          "type": "string",
+          "enum": [
+            "nybegynner",
+            "middels",
+            "avansert"
+          ]
+        },
+        "vurdering": {
+          "type": "string"
+        },
+        "varighet": {
+          "type": "string"
+        },
+        "publisert": {
+          "type": "boolean",
+          "default": true
+        },
+        "dato": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "fag",
+        "emne",
+        "kompetansemaal",
+        "vanskelighetsgrad"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
