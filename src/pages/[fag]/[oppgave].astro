@@ -19,7 +19,8 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { data, body } = entry;
+const { Content, headings } = await entry.render();
+const { data } = entry;
 
 const vanskFarger: Record<string, string> = {
   nybegynner: "var(--green)",
@@ -90,7 +91,7 @@ const fagIkon: Record<string, string> = {
         </header>
 
         <div class="oppgave-innhold">
-          <Fragment set:html={body} />
+          <Content />
         </div>
       </article>
     </main>
