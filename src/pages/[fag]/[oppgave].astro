@@ -63,7 +63,6 @@ const fagIkon: Record<string, string> = {
             >
               {data.vanskelighetsgrad === "nybegynner" ? "Nybegynner" : data.vanskelighetsgrad === "middels" ? "Middels" : "Avansert"}
             </span>
-            {data.varighet && <span class="varighet-badge">⏱ {data.varighet}</span>}
           </div>
 
           <h1 class="oppgave-tittel">{data.title}</h1>
@@ -149,8 +148,7 @@ const fagIkon: Record<string, string> = {
   }
 
   .fag-badge,
-  .vansk-badge,
-  .varighet-badge {
+  .vansk-badge {
     font-size: 12px;
     padding: 4px 10px;
     border-radius: 20px;
@@ -165,11 +163,6 @@ const fagIkon: Record<string, string> = {
   .vansk-badge {
     text-transform: uppercase;
     letter-spacing: 0.03em;
-  }
-
-  .varighet-badge {
-    background: var(--bg-hover);
-    color: var(--text-muted);
   }
 
   .oppgave-tittel {

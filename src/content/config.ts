@@ -9,7 +9,6 @@ const oppgaver = defineCollection({
     kompetansemaal: z.array(z.string()),
     vanskelighetsgrad: z.enum(["nybegynner", "middels", "avansert"]),
     vurdering: z.string().optional(),
-    varighet: z.string().optional(),
     publisert: z.boolean().default(true),
     dato: z.coerce.string().optional(),
     tags: z.array(z.string()).default([]),

@@ -6,10 +6,10 @@ export interface Props {
   beskrivelse: string;
   farge: string;
   oppgaveTell: number;
-  kompetansemaal: string[];
+  kompetansemaalAntall: number;
 }
 
-const { navn, slug, ikon, beskrivelse, farge, oppgaveTell, kompetansemaal } = Astro.props;
+const { navn, slug, ikon, beskrivelse, farge, oppgaveTell, kompetansemaalAntall } = Astro.props;
 ---
 
 <a href={`/oppgaver-for-2IT/${slug}/`} class="fag-card">
@@ -21,7 +21,7 @@ const { navn, slug, ikon, beskrivelse, farge, oppgaveTell, kompetansemaal } = As
     <p class="fag-beskrivelse">{beskrivelse}</p>
     <div class="fag-stats">
       <span class="stat">{oppgaveTell} oppgaver</span>
-      <span class="stat">{kompetansemaal.length} kompetansemål</span>
+      <span class="stat">{kompetansemaalAntall} kompetansemål</span>
     </div>
   </div>
   <div class="fag-pil">

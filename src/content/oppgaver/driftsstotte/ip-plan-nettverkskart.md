@@ -3,11 +3,10 @@ title: "IP-plan og nettverkskart for Nordic Cloud Solutions"
 fag: driftsstotte
 emne: Nettverkssegmentering og dokumentasjon
 kompetansemaal:
-  - km-02
-  - km-05
-  - km-06
+  - Kompetansemål om nettverkssegmentering
+  - Kompetansemål om nettverksprotokoller
+  - Kompetansemål om planlegging og dokumentasjon
 vanskelighetsgrad: middels
-varighet: 4–6 uker
 publisert: true
 dato: 2026-05-11
 tags:
@@ -58,7 +57,7 @@ NCS har nettopp flyttet inn i et nytt bygg og trenger et komplett design for IT-
 
 ## Oppgave
 
-### Del 1: Behovsanalyse (uke 1)
+### Del 1: Behovsanalyse
 
 Før du begynner å sette opp IP-adresser, må du forstå hva NCS trenger.
 
@@ -81,7 +80,7 @@ Før du begynner å sette opp IP-adresser, må du forstå hva NCS trenger.
 
 ---
 
-### Del 2: IP-plan (uke 2–3)
+### Del 2: IP-plan
 
 Dere har fått tildelt adresseområdet **10.100.0.0/16** for hele NCS-infrastrukturen i Oslo-kontoret. Du skal fordele dette området til alle nettverkssegmentene dine.
 
@@ -102,7 +101,7 @@ Dere har fått tildelt adresseområdet **10.100.0.0/16** for hele NCS-infrastruk
 
 ---
 
-### Del 3: Nettverkskart — fysisk topologi (uke 3–4)
+### Del 3: Nettverkskart — fysisk topologi
 
 Nå skal du tegne hvordan det fysiske nettverket ser ut.
 
@@ -123,7 +122,7 @@ Nå skal du tegne hvordan det fysiske nettverket ser ut.
 
 ---
 
-### Del 4: Nettverkskart — logisk topologi (uke 4)
+### Del 4: Nettverkskart — logisk topologi
 
 Det fysiske kartet viser hvor ting står. Det logiske kartet viser hvordan trafikken flyter.
 
@@ -141,7 +140,7 @@ Det fysiske kartet viser hvor ting står. Det logiske kartet viser hvordan trafi
 
 ---
 
-### Del 5: Dokumentasjon og refleksjon (uke 5–6)
+### Del 5: Dokumentasjon og refleksjon
 
 10. Skriv en **kort driftsdokumentasjon** (1–2 sider) som:
     - Oppsummerer IP-planen og VLAN-strukturen
@@ -153,8 +152,8 @@ Det fysiske kartet viser hvor ting står. Det logiske kartet viser hvordan trafi
     - Hvilke sikkerhetsmessige konsekvenser får det hvis noen kobler seg til en ledig svitsjeport i et åpent møterom?
     - Hvordan påvirker valgene dine personvernet til de ansatte?
     - Hva ville du gjort annerledes hvis NCS hadde 400 ansatte i stedet for 40?
-    - Hvordan påvirker denne løsningen IT-sikkerhet og personvern for enkeltmennesker, virksomheten og samfunnet? (kobling til km-11)
-    - Hva har du lært om å planlegge og dokumentere IT-løsninger? (kobling til km-06)
+    - Hvordan påvirker denne løsningen IT-sikkerhet og personvern for enkeltmennesker, virksomheten og samfunnet? (kobling til kompetansemål om personvern)
+    - Hva har du lært om å planlegge og dokumentere IT-løsninger? (kobling til kompetansemål om planlegging og dokumentasjon)
 
 ---
 

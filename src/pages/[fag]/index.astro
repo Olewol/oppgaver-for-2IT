@@ -20,21 +20,57 @@ const fagInfo = {
     ikon: "🖥",
     farge: "#6c8cff",
     beskrivelse: "Planlegge, implementere og drifte fysiske og virtuelle IT-løsninger med fokus på sikkerhet, segmenterte nettverk, skytjenester og automatisering.",
-    kompetansemaal: ["km-01: Utforske komponenter i driftsarkitektur", "km-02: Segmenterte nettverk", "km-03: Skytjenester og virtualisering", "km-04: Bruker- og tilgangsstyring", "km-05: Nettverksprotokoller", "km-06: Planlegge og dokumentere", "km-07: Trusler mot datasikkerhet", "km-08: Risikoanalyse", "km-09: Automatisering", "km-10: Sikre IT-løsninger", "km-11: Personvernrefleksjon", "km-12: Bærekraft"],
+    kompetansemaal: [
+      { tema: "Driftsarkitektur", tekst: "Identifisere og utforske komponentar i ei driftsarkitektur og funksjonen til komponentane" },
+      { tema: "Nettverkssegmentering", tekst: "Utforske og beskrive korleis segmenterte nettverk kan nyttast i ei verksemd" },
+      { tema: "Skytjenester og virtualisering", tekst: "Utforske og samanlikne teknologiar for skytjenester og virtualisering" },
+      { tema: "Bruker- og tilgangsstyring", tekst: "Utforske og drøfte prinsipp for brukar- og tilgangsstyring" },
+      { tema: "Nettverksprotokoller", tekst: "Bruke adresseringsskjema, nettverksprotokollar og tenester i eit nettverk" },
+      { tema: "Planlegging og dokumentasjon", tekst: "Planleggje og dokumentere oppsett, feilsøking og endringar av IT-løysingar" },
+      { tema: "Trusler mot datasikkerhet", tekst: "Utforske og drøfte moglege trugsmål mot datasikkerheit" },
+      { tema: "Risikoanalyse", tekst: "Gjere ein risikoanalyse for ei IT-løysing og foreslå risikoreduserende tiltak" },
+      { tema: "Automatisering", tekst: "Utforske og drøfte bruk av automatisering i drift av IT-system" },
+      { tema: "Sikre IT-løsninger", tekst: "Gjennomføre tiltak for å sikre ei IT-løysing" },
+      { tema: "Personvern", tekst: "Utforske og drøfte korleis IT-løysingar påverkar personvern for enkeltmenneske, verksemder og samfunnet" },
+      { tema: "Bærekraft", tekst: "Utforske og drøfte berekraftige løysingar og miljømedvitne val i drift av IT-system" },
+    ],
   },
   brukerstotte: {
     navn: "Brukerstøtte",
     ikon: "💬",
     farge: "#4ade80",
     beskrivelse: "Service, veiledning og opplæring — kommunikasjon, feilsøking, dokumentasjon, kurs og kvalitetssikring for IT-systemer.",
-    kompetansemaal: ["km-01: Etikk og lovverk", "km-02: Brukerstøtte og veiledning", "km-03: Utvikle veiledninger", "km-04: Kurs og opplæring", "km-05: Kommunikasjon og fagterminologi", "km-06: Feilsøking", "km-07: Kvalitetssikring", "km-08: Krevende situasjoner", "km-09: Intelligente systemer", "km-10: Samhandlingsverktøy", "km-11: Yrkesfellesskap"],
+    kompetansemaal: [
+      { tema: "Etikk og lovverk", tekst: "Utforske og drøfte etiske problemstillingar og regelverk som gjeld for brukarstøtte" },
+      { tema: "Brukerstøtte og veiledning", tekst: "Utforske og drøfte prinsipp for brukarstøtte og rettleiing" },
+      { tema: "Utvikle veiledninger", tekst: "Utvikle og kvalitetssikre brukarrettleiingar og annan dokumentasjon" },
+      { tema: "Kurs og opplæring", tekst: "Planleggje, gjennomføre og evaluere kurs og opplæring" },
+      { tema: "Kommunikasjon og fagterminologi", tekst: "Bruke fagterminologi og kommunisere tilpassa målgruppa" },
+      { tema: "Feilsøking", tekst: "Gjennomføre systemisk feilsøking" },
+      { tema: "Kvalitetssikring", tekst: "Etablere system for kvalitetssikring av brukarstøtte" },
+      { tema: "Krevende situasjoner", tekst: "Utforske og drøfte handtering av krevjande situasjonar i brukarstøtte" },
+      { tema: "Intelligente systemer", tekst: "Utforske og drøfte korleis intelligente system kan nyttast i brukarstøtte" },
+      { tema: "Samhandlingsverktøy", tekst: "Utforske og drøfte verktøy og metodar for samhandling" },
+      { tema: "Yrkesfellesskap", tekst: "Utforske og drøfte korleis ein kan bidra til å utvikle eit godt yrkesfellesskap" },
+    ],
   },
   utvikling: {
     navn: "Utvikling",
     ikon: "⚡",
     farge: "#fbbf24",
     beskrivelse: "Designe og utvikle IT-løsninger — programmering, webapplikasjoner, databaser, versjonskontroll, testing og innebygget sikkerhet.",
-    kompetansemaal: ["km-01: Programmeringsspråk og algoritmer", "km-02: Funksjonelle krav", "km-03: Brukergrensesnitt", "km-04: Teknisk dokumentasjon", "km-05: Versjonskontroll", "km-06: Innebygget personvern", "km-07: Innebygget sikkerhet", "km-08: Testing", "km-09: Databasemodellering", "km-10: Datalagringsmodeller"],
+    kompetansemaal: [
+      { tema: "Programmeringsspråk og algoritmer", tekst: "Utforske og bruke programmeringsspråk og algoritmar i ei IT-løysing" },
+      { tema: "Funksjonelle krav", tekst: "Utarbeide funksjonelle krav til ei IT-løysing" },
+      { tema: "Brukergrensesnitt", tekst: "Designe og utvikle eit brukargrensesnitt" },
+      { tema: "Teknisk dokumentasjon", tekst: "Utarbeide teknisk dokumentasjon for ei IT-løysing" },
+      { tema: "Versjonskontroll", tekst: "Bruke versionskontroll i utviklingsprosjekt" },
+      { tema: "Innebygget personvern", tekst: "Utforske og drøfte prinsipp for innebygd personvern" },
+      { tema: "Innebygget sikkerhet", tekst: "Utforske og drøfte prinsipp for innebygd sikkerheit" },
+      { tema: "Testing", tekst: "Gjennomføre testing og kvalitetssikring av ei IT-løysing" },
+      { tema: "Databasemodellering", tekst: "Utforske og samanlikne modellar for databasar" },
+      { tema: "Datalagringsmodeller", tekst: "Utforske og samanlikne modellar for datalagring" },
+    ],
   },
 };
 
@@ -71,7 +107,10 @@ const oppgaver = (await getCollection("oppgaver"))
         <h2 class="section-title">Kompetansemål</h2>
         <div class="km-list">
           {info.kompetansemaal.map((km) => (
-            <div class="km-item">{km}</div>
+            <div class="km-item">
+              <span class="km-tema">{km.tema}</span>
+              <p class="km-tekst">{km.tekst}</p>
+            </div>
           ))}
         </div>
       </section>
@@ -88,7 +127,6 @@ const oppgaver = (await getCollection("oppgaver"))
                 emne={o.data.emne}
                 kompetansemaal={o.data.kompetansemaal}
                 vanskelighetsgrad={o.data.vanskelighetsgrad}
-                varighet={o.data.varighet}
                 tags={o.data.tags}
                 slug={o.taskSlug}
                 body={o.body}
@@ -176,17 +214,29 @@ const oppgaver = (await getCollection("oppgaver"))
 
   .km-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 6px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 8px;
   }
 
   .km-item {
-    font-size: 13px;
-    padding: 8px 12px;
+    padding: 12px 14px;
     background: var(--bg-elevated);
     border-radius: var(--radius-sm);
-    color: var(--text-secondary);
     border: 1px solid var(--border);
+  }
+
+  .km-tema {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .km-tekst {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
   }
 
   .oppgaver-section {

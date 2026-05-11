@@ -35,9 +35,6 @@
         "vurdering": {
           "type": "string"
         },
-        "varighet": {
-          "type": "string"
-        },
         "publisert": {
           "type": "boolean",
           "default": true

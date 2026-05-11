@@ -6,13 +6,12 @@ export interface Props {
   emne: string;
   kompetansemaal: string[];
   vanskelighetsgrad: string;
-  varighet?: string;
   tags: string[];
   slug: string;
   body: string;
 }
 
-const { title, fagNavn, emne, vanskelighetsgrad, varighet, tags, slug, body } = Astro.props;
+const { title, fagNavn, emne, vanskelighetsgrad, tags, slug, body } = Astro.props;
 
 const vanskFarger: Record<string, string> = {
   nybegynner: "var(--green)",
@@ -32,7 +31,6 @@ const fagIkoner: Record<string, string> = {
     <span class="fag-badge" style={`background: ${vanskFarger[vanskelighetsgrad]}18; color: ${vanskFarger[vanskelighetsgrad]}`}>
       {vanskelighetsgrad === "nybegynner" ? "Nybegynner" : vanskelighetsgrad === "middels" ? "Middels" : "Avansert"}
     </span>
-    {varighet && <span class="varighet">{fagIkoner[fagNavn.toLowerCase()]} {varighet}</span>}
   </div>
   <h3 class="card-title">{title}</h3>
   <div class="card-meta">
@@ -84,11 +82,6 @@ const fagIkoner: Record<string, string> = {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.04em;
-  }
-
-  .varighet {
-    color: var(--text-muted);
-    font-size: 12px;
   }
 
   .card-title {

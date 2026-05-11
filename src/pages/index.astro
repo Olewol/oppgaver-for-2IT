@@ -22,21 +22,21 @@ const fag = {
     ikon: "🖥",
     beskrivelse: "Planlegge, implementere og drifte sikre IT-løsninger — nettverk, servere, skytjenester, virtualisering, sikkerhet og automatisering.",
     farge: "#6c8cff",
-    kompetansemaal: ["km-01", "km-02", "km-03", "km-04", "km-05", "km-06", "km-07", "km-08", "km-09", "km-10", "km-11", "km-12"],
+    kompetansemaalAntall: 12,
   },
   brukerstotte: {
     navn: "Brukerstøtte",
     ikon: "💬",
     beskrivelse: "Service, veiledning og opplæring — kommunikasjon, feilsøking, dokumentasjon, kurs og kvalitetssikring.",
     farge: "#4ade80",
-    kompetansemaal: ["km-01", "km-02", "km-03", "km-04", "km-05", "km-06", "km-07", "km-08", "km-09", "km-10", "km-11"],
+    kompetansemaalAntall: 11,
   },
   utvikling: {
     navn: "Utvikling",
     ikon: "⚡",
     beskrivelse: "Designe og utvikle IT-løsninger — programmering, webapplikasjoner, databaser, versjonskontroll og testing.",
     farge: "#fbbf24",
-    kompetansemaal: ["km-01", "km-02", "km-03", "km-04", "km-05", "km-06", "km-07", "km-08", "km-09", "km-10"],
+    kompetansemaalAntall: 10,
   },
 };
 
@@ -80,7 +80,7 @@ const nyesteOppgaver = oppgaverMedSlug.slice(0, 6);
               beskrivelse={data.beskrivelse}
               farge={data.farge}
               oppgaveTell={oppgaverMedSlug.filter((o) => o.data.fag === slug).length}
-              kompetansemaal={data.kompetansemaal}
+              kompetansemaalAntall={data.kompetansemaalAntall}
             />
           ))}
         </div>
@@ -97,7 +97,6 @@ const nyesteOppgaver = oppgaverMedSlug.slice(0, 6);
               emne={o.data.emne}
               kompetansemaal={o.data.kompetansemaal}
               vanskelighetsgrad={o.data.vanskelighetsgrad}
-              varighet={o.data.varighet}
               tags={o.data.tags}
               slug={o.taskSlug}
               body={o.body}
