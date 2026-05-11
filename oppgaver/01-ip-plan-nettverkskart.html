@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oppgave 01: IP-plan og nettverkskart — Oppgaver for 2IT</title>
+  <meta name="theme-color" content="#0f1117">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <div class="container">
+    <nav>
+      <a href="/" class="logo">Oppgaver <span>for 2IT</span></a>
+      <div class="nav-links">
+        <a href="/" class="active">Oppgaver</a>
+        <a href="/om.html">Om</a>
+      </div>
+    </nav>
+
+    <div class="page-header">
+      <div class="breadcrumb">
+        <a href="/">Oppgaver</a> / IP-plan og nettverkskart
+      </div>
+      <h1>IP-plan og nettverkskart for Nordic Cloud Solutions</h1>
+      <p class="subtitle">Design et segmentert nettverk for en voksende IT-bedrift</p>
+      <div class="tags">
+        <span>Driftsstøtte</span>
+        <span>Nettverk</span>
+        <span>KM-02</span>
+        <span>KM-05</span>
+        <span>4–6 timer</span>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- ============ CASE ============ -->
+      <h2>Case: Nordic Cloud Solutions</h2>
+
+      <p>Nordic Cloud Solutions er en IT-konsulentbedrift i kraftig vekst. De leverer skytjenester, infrastrukturrådgivning og utviklingstjenester til kunder over hele Norden. Etter en nylig flytting til nye lokaler trenger de et komplett, nytt nettverk — fra bunnen av.</p>
+
+      <p>Du er ansatt som nettverkskonsulent og har fått i oppdrag å designe hele nettverksinfrastrukturen. Alt skal dokumenteres skikkelig slik at det kan presenteres for ledelsen og overleveres til driftsavdelingen.</p>
+
+      <div class="callout info">
+        <h4>Din rolle</h4>
+        <p>Du er nettverkskonsulent i selskapet <strong>NetConsult AS</strong>. Nordic Cloud Solutions har hyret inn deg for å lage en komplett IP-plan og nettverkskart. Leveransen din blir grunnlaget for all videre konfigurasjon av rutere, svitsjer og brannmurer.</p>
+      </div>
+
+      <h3>Om bedriften</h3>
+      <p>Nordic Cloud Solutions har ca. <strong>40 ansatte</strong> fordelt på følgende avdelinger:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Avdeling</th>
+            <th>Antall ansatte</th>
+            <th>Beskrivelse</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ledelse og administrasjon</td>
+            <td>5</td>
+            <td>Daglig leder, økonomi, HR, markedsføring</td>
+          </tr>
+          <tr>
+            <td>Infrastruktur (IT-drift)</td>
+            <td>8</td>
+            <td>Nettverksdrift, serverdrift, skytjenester</td>
+          </tr>
+          <tr>
+            <td>Utvikling</td>
+            <td>15</td>
+            <td>Backend, frontend, devops — trenger tilgang til testmiljøer</td>
+          </tr>
+          <tr>
+            <td>Salg og support</td>
+            <td>7</td>
+            <td>Kundesupport, salg, kundeoppfølging</td>
+          </tr>
+          <tr>
+            <td>Praktikanter og gjester</td>
+            <td>5</td>
+            <td>Maks 5 samtidige — kun internettilgang</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Fysisk plassering og utstyr</h3>
+      <p>Bedriften holder til i ett kontorbygg med følgende rom/områder:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Område</th>
+            <th>Funksjon</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Åpent kontorlandskap</td>
+            <td>Utvikling og salg/support — åpen løsning med 30 arbeidsplasser</td>
+          </tr>
+          <tr>
+            <td>Kontorer</td>
+            <td>Ledelse og administrasjon — 5 enmannskontorer</td>
+          </tr>
+          <tr>
+            <td>Serverrom</td>
+            <td>Skap med 3 fysiske servere, 2 svitsjer, brannmur/ruter</td>
+          </tr>
+          <tr>
+            <td>Møterom (2 stk)</td>
+            <td>Møterom med projektor og trådløs skjermdeling</td>
+          </tr>
+          <tr>
+            <td>Kjøkken/kantine</td>
+            <td>Gjestetilgang via WiFi</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout info">
+        <h4>Utstyr tilgjengelig</h4>
+        <p>Bedriften har kjøpt inn: <strong>1 brannmur/ruter</strong> (grensesnitt mot ISP), <strong>2 managed-svitsjer</strong> (med VLAN-støtte, IEEE 802.1Q), <strong>3 aksesspunkter</strong> (WiFi 6, støtter SSID-til-VLAN-mapping), <strong>3 fysiske servere</strong> (virtualiserte med Hyper-V).</p>
+      </div>
+
+      <h3>Krav og føringer</h3>
+      <p>Ledelsen har spesifisert følgende krav:</p>
+
+      <ol>
+        <li><strong>Sikkerhet:</strong> Avdelingene skal være separert. En angriper som kommer inn på gjestenettverket skal ikke kunne nå interne servere.</li>
+        <li><strong>Segmentering:</strong> Minimum 5 VLAN skal brukes for å skille trafikk.</li>
+        <li><strong>Trådløst:</strong> Eget SSID for ansatte (med tilgang til interne ressurser) og eget SSID for gjester (kun internett).</li>
+        <li><strong>IP-plan:</strong> Bruk private adresser (10.0.0.0/8-rommet). Hvert VLAN skal ha sitt eget subnett med riktig størrelse.</li>
+        <li><strong>Serverne:</strong> Tre fysiske servere i serverrommet, virtualisert med Hyper-V. Serverne skal ha faste IP-adresser.</li>
+        <li><strong>Dokumentasjon:</strong> Alt skal dokumenteres i en rapport som en annen IT-person kan forstå og implementere.</li>
+      </ol>
+
+      <h3>Tilgjengelig adresseblokk</h3>
+      <p>Du har fått tildelt følgende adresseblokk til intern bruk:</p>
+
+      <p style="font-size: 1.3rem; font-weight: 700; text-align: center; padding: 16px; background: #1a1d27; border-radius: 8px; border: 1px solid #2a2e3a; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.05em;">
+        10.100.0.0/16
+      </p>
+
+      <p>Du må selv bestemme hvordan du deler opp dette adresserommet. Husk at ikke alle avdelinger trenger like store subnett.</p>
+
+      <!-- ============ LÆRINGSMÅL ============ -->
+      <h2>Læringsmål</h2>
+
+      <p>Etter å ha fullført denne oppgaven skal du kunne:</p>
+      <ul>
+        <li>Beregne subnett med CIDR-notasjon og bestemme riktig subnettstørrelse</li>
+        <li>Planlegge og dokumentere en VLAN-struktur med IEEE 802.1Q</li>
+        <li>Tegne både fysisk og logisk nettverkskart</li>
+        <li>Begrunne valg av nettverkssegmentering ut fra sikkerhets- og ytelseshensyn</li>
+        <li>Dokumentere en komplett IP-plan med nettverksadresser, broadcast-adresser og tilgjengelige host-adresser</li>
+      </ul>
+
+      <div class="callout warning">
+        <h4>Kobling til kompetansemål</h4>
+        <p>Denne oppgaven dekker <strong>KM-02</strong> (planlegge, implementere og drifte fysiske og virtuelle løsninger med segmenterte nettverk) og <strong>KM-05</strong> (utforske og beskrive relevante nettverksprotokoller, nettverkstjenester og serverroller) i programfaget Driftsstøtte.</p>
+      </div>
+
+      <!-- ============ OPPGAVE ============ -->
+      <h2>Oppgave</h2>
+
+      <p>Din jobb er å levere en komplett nettverksdesignrapport for Nordic Cloud Solutions. Rapporten skal inneholde følgende deler:</p>
+
+      <h3>Del 1: IP-plan (tabell)</h3>
+      <p>Lag en fullstendig IP-plan i tabellform som viser:</p>
+      <ul>
+        <li>Hvert VLAN med navn, VLAN-ID og formål</li>
+        <li>Nettverksadresse i CIDR-notasjon</li>
+        <li>Subnettmaske</li>
+        <li>Første og siste brukbare host-adresse</li>
+        <li>Broadcast-adresse</li>
+        <li>Antall tilgjengelige adresser</li>
+        <li>Default gateway for hvert subnett (f.eks. første brukbare adresse)</li>
+      </ul>
+
+      <p>Du bestemmer selv VLAN-ID-er og subnettstørrelser, men du må kunne <strong>begrunne</strong> valgene dine. Husk at subnettet må være stort nok for avdelingens behov, med litt slingringsmonn for vekst.</p>
+
+      <h3>Del 2: Fysisk nettverkskart</h3>
+      <p>Tegn et fysisk nettverkskart som viser:</p>
+      <ul>
+        <li>Alle fysiske enheter (brannmur/ruter, svitsjer, aksesspunkter, servere)</li>
+        <li>Hvordan enhetene er fysisk koblet sammen med kablering</li>
+        <li>Hvilke svitsje-porter som er i bruk</li>
+        <li>Plassering i bygget (omtrentlig)</li>
+      </ul>
+
+      <p>Kartet kan tegnes for hånd, i et digitalt verktøy som <strong>draw.io</strong> (draw.io), <strong>Lucidchart</strong>, <strong>Visio</strong> — eller et annet verktøy du foretrekker.</p>
+
+      <h3>Del 3: Logisk nettverkskart</h3>
+      <p>Tegn et logisk nettverkskart som viser:</p>
+      <ul>
+        <li>Hvilke VLAN som finnes</li>
+        <li>IP-adresseområder for hvert VLAN</li>
+        <li>Hvordan trafikk flyter mellom VLAN (ruting)</li>
+        <li>Hvilke enheter/tjenester som finnes i hvert VLAN</li>
+        <li>Brannmurregler/ACLs mellom VLAN (hvilken trafikk er tillatt på tvers)</li>
+      </ul>
+
+      <div class="callout info">
+        <h4>Tips til verktøy for nettverkskart</h4>
+        <p><strong>draw.io</strong> (draw.io) er gratis og har innebygde maler for nettverksdiagram. Det finnes også som nettapp og som desktop-versjon. Andre alternativer: <strong>Visio</strong> (lisens), <strong>Lucidchart</strong>, eller bare <strong>papir og blyant</strong> — så lenge det er tydelig og lesbart.</p>
+      </div>
+
+      <h3>Del 4: Begrunnelse og refleksjon</h3>
+      <p>Skriv en kort forklaring (ca. 300–500 ord) som svarer på:</p>
+      <ul>
+        <li>Hvorfor valgte du akkurat disse subnettstørrelsene?</li>
+        <li>Hvordan har du tatt hensyn til sikkerhet i segmenteringen?</li>
+        <li>Hvorfor har du valgt de VLAN-ID-ene du har brukt?</li>
+        <li>Hvilke protokoller og tjenester må være på plass for at nettverket skal fungere (DHCP, DNS, NAT)?</li>
+        <li>Hvordan vil gjeste-WiFi håndteres slik at gjester ikke får tilgang til interne ressurser?</li>
+        <li>Hvordan kan bedriften skalere løsningen hvis de vokser til 80 ansatte?</li>
+      </ul>
+
+      <!-- ============ LEVERANSE ============ -->
+      <h2>Leveranse</h2>
+
+      <p>Du leverer én PDF eller ett dokument som inneholder:</p>
+
+      <ul class="deliverables">
+        <li>
+          <strong>IP-plan</strong>
+          <span>Fullstendig tabell med alle VLAN, subnett, adresseområder og default gateway</span>
+        </li>
+        <li>
+          <strong>Fysisk nettverkskart</strong>
+          <span>Vis alle enheter med fysiske koblinger</span>
+        </li>
+        <li>
+          <strong>Logisk nettverkskart</strong>
+          <span>Vis VLAN, IP-områder og trafikkflyt</span>
+        </li>
+        <li>
+          <strong>Begrunnelse og refleksjon</strong>
+          <span>300–500 ord som forklarer og forsvarer designvalgene dine</span>
+        </li>
+      </ul>
+
+      <!-- ============ VURDERING ============ -->
+      <h2>Vurderingskriterier</h2>
+
+      <p>Oppgaven vurderes på følgende kriterier:</p>
+
+      <div class="vurdering-grid">
+        <div class="vurdering-card lav">
+          <h4>Lav måloppnåelse</h4>
+          <ul>
+            <li>IP-plan med noen subnett, men feil i CIDR-beregninger</li>
+            <li>Nettverkskart mangler enten fysisk eller logisk struktur</li>
+            <li>Mangelfull begrunnelse for valg</li>
+            <li>Noen VLAN mangler eller er unødvendige</li>
+          </ul>
+        </div>
+        <div class="vurdering-card middels">
+          <h4>Middels måloppnåelse</h4>
+          <ul>
+            <li>Korrekt IP-plan med passende subnettstørrelser</li>
+            <li>Både fysisk og logisk nettverkskart levert</li>
+            <li>God begrunnelse med faglig korrekte argumenter</li>
+            <li>VLAN-struktur med 5+ VLAN, gjennomtenkt navngivning</li>
+            <li>DHCP, DNS og NAT er vurdert</li>
+          </ul>
+        </div>
+        <div class="vurdering-card hoy">
+          <h4>Høy måloppnåelse</h4>
+          <ul>
+            <li>Presis IP-plan med optimal utnyttelse av adresserom</li>
+            <li>Detaljerte og profesjonelle nettverkskart</li>
+            <li>Solid begrunnelse med sikkerhetsbevisste valg (native VLAN endret, ACL-betraktninger)</li>
+            <li>Gjeste-WiFi-løsning med VLAN-isolasjon</li>
+            <li>Skaleringsbetraktninger for fremtidig vekst</li>
+            <li>Brannmurregler mellom VLAN er beskrevet</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ============ RESSURSER ============ -->
+      <h2>Ressurser og støtte</h2>
+
+      <p>Her er nyttige kilder for å løse oppgaven:</p>
+
+      <ul>
+        <li><strong>NDLA — Driftsstøtte:</strong> <a href="https://ndla.no/f/driftsstotte-im-itk-vg2/2c20017628cc" target="_blank">Fagartikler om nettverk, VLAN og IP-adressering</a></li>
+        <li><strong>NDLA — Segmentering og VLAN:</strong> <a href="https://ndla.no/nb/r/driftsstotte-im-itk-vg2/virtuelt-lokalnettverk-vlan/9d865afa88" target="_blank">Virtuelt lokalnettverk VLAN</a></li>
+        <li><strong>NDLA — IPv4:</strong> <a href="https://ndla.no/en/r/operational-support-im-itk-vg2/ipv4/987eefec02" target="_blank">IPv4-adresser og subnett</a></li>
+        <li><strong>Driftsstøtte VG2 — repo:</strong> <a href="https://github.com/Olewol/driftsstotte-vg2" target="_blank">Fagstoff om nettverk, segmentering og VLAN</a></li>
+        <li><strong>Subnet Calculator:</strong> <a href="https://www.subnet-calculator.com/" target="_blank">Subnet-calculator.com</a> — sjekk beregningene dine</li>
+        <li><strong>draw.io:</strong> <a href="https://draw.io" target="_blank">draw.io</a> — gratis verktøy for nettverksdiagram</li>
+      </ul>
+
+      <div class="callout success">
+        <h4>Tips</h4>
+        <p>Start med å finne ut hvor mange subnett du trenger og hvor store de må være. Regn deretter ut hvordan du best deler opp <strong>10.100.0.0/16</strong>. Husk at du kan bruke forskjellige subnettmasker i samme nettverk — ikke alle subnett trenger å være like store.</p>
+      </div>
+
+      <div class="callout warning">
+        <h4>Vanlige feil</h4>
+        <ul>
+          <li>Å glemme at første og siste adresse i et subnett er reservert (nettverksadresse og broadcast)</li>
+          <li>Å velge /24 for alt — noen avdelinger trenger bare /27 eller /28</li>
+          <li>Å ikke tenke på vekst — legg inn litt slingringsmonn</li>
+          <li>Å glemme management-VLAN for nettverksutstyret selv</li>
+          <li>Å sette gjester i samme VLAN som interne brukere</li>
+        </ul>
+      </div>
+
+      <!-- ============ NAVIGASJON ============ -->
+      <div class="task-nav">
+        <a href="/">&larr; Tilbake til oppgaver</a>
+        <span></span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <footer>
+      <p>Oppgaver for VG2 Informasjonsteknologi · <a href="https://github.com/Olewol/oppgaver-for-2IT" target="_blank">GitHub</a></p>
+    </footer>
+  </div>
+</body>
+</html>
