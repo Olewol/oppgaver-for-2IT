@@ -195,6 +195,7 @@ Det fysiske kartet viser hvor ting står. Det logiske kartet viser hvordan trafi
 - [NDLA: VLAN](https://ndla.no/nb/r/driftsstotte-im-itk-vg2/virtuelt-lokalnettverk-vlan/9d865afa88) — Virtuelle lokalnettverk
 - [NDLA: NAT](https://ndla.no/r/driftsstotte-im-itk-vg2/nat/1abb031ac9) — Network Address Translation
 - [NDLA: Oppgaver om VLAN](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/topic:6e8a2eaf-4983-4d42-a9b0-911b5921b44a/resource:393e4355-8d1c-4f17-978d-7763a6d6c2e7) — Eksempeloppgaver
-- Driftsstøtte-vault: Segmentering og VLAN — Intern fagartikkel
+- [Driftsstøtte VG2 — fagstoff](https://olewol.github.io/driftsstotte-vg2/) — Komplett fagressurs med notater om nettverk, sikkerhet, OS og drift
+- [Segmentering og VLAN](https://olewol.github.io/driftsstotte-vg2/nettverk/segmentering-og-vlan) — Spesifikt om nettverkssegmentering og VLAN
 - Cisco Packet Tracer — Gratis nettverkssimulator
 - draw.io — Gratis diagramverktøy
