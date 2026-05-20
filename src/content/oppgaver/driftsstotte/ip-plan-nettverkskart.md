@@ -3,12 +3,19 @@ title: "IP-plan og nettverkskart for Nordic Cloud Solutions"
 fag: driftsstotte
 emne: Nettverkssegmentering og dokumentasjon
 kompetansemaal:
-  - Kompetansemål om nettverkssegmentering
-  - Kompetansemål om nettverksprotokoller
-  - Kompetansemål om planlegging og dokumentasjon
+  - km-02
+  - km-05
+  - km-06
 vanskelighetsgrad: middels
 publisert: true
 dato: 2026-05-11
+relatert-teori:
+  - tittel: "Segmentering og VLAN"
+    url: "https://olewol.github.io/driftsstotte-vg2/nettverk/segmentering-og-vlan"
+  - tittel: "Nettverksprotokoller"
+    url: "https://olewol.github.io/driftsstotte-vg2/nettverk/nettverksprotokoller"
+  - tittel: "Dokumentasjon og planlegging"
+    url: "https://olewol.github.io/driftsstotte-vg2/it-drift/dokumentasjon-og-planlegging"
 tags:
   - ip-plan
   - nettverkskart
