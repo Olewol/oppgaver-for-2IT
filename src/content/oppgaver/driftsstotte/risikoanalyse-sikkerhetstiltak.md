@@ -153,7 +153,23 @@ Lag en tabell:
 
 #### Steg 3: Vurder og ranger risiko
 
-7. Bruk **risikomatrisen** (5×5) til å rangere risikoscenarioene dine. For hvert scenario vurderer du:
+7. Bruk **risikomatrisen** (5×5) til å rangere risikoscenarioene dine. Hvert scenario får en risikoverdi = sannsynlighet × konsekvens.
+
+> <details>
+> <summary><strong>📊 Risikomatrise 5×5 — referanse</strong></summary>
+>
+> | | **1 Ubetydelig** | **2 Liten** | **3 Moderat** | **4 Alvorlig** | **5 Svært alvorlig** |
+> |---|---|---|---|---|---|
+> | **5 Svært stor** | 5 | 10 | 15 | 20 | **25** |
+> | **4 Stor** | 4 | 8 | 12 | **16** | **20** |
+> | **3 Middels** | 3 | 6 | **9** | 12 | 15 |
+> | **2 Liten** | 2 | 4 | 6 | 8 | 10 |
+> | **1 Svært liten** | 1 | 2 | 3 | 4 | 5 |
+>
+> **Fargekoder:** 1–4 = lav (grønn), 5–9 = middels (gul), 10–19 = høy (oransje), 20–25 = kritisk (rød)
+> </details>
+
+   For hvert scenario vurderer du:
    - **Sannsynlighet** (1–5): Hvor trolig er det at denne hendelsen inntreffer hos Oslofjord Helse?
    - **Konsekvens** (1–5): Hvor alvorlig vil skaden være for virksomheten og pasientene?
 
@@ -163,7 +179,7 @@ Lag en tabell:
    |----------|--------------------|------------------|-------------|-----------|
    | ... | ... | ... | S × K = ... | ... |
 
-   > **Husk:** En risiko med høy konsekvens og lav sannsynlighet kan være like viktig som en med middels sannsynlighet og middels konsekvens. Risikoverdien = S × K. Fargekoden følger den standardiserte skalaen.
+   > **Husk:** En risiko med høy konsekvens og lav sannsynlighet kan være like viktig som en med middels sannsynlighet og middels konsekvens. Risikoverdien = S × K. Bruk fargekodene over for å visualisere alvorlighetsgraden.
 
 8. Ranger scenarioene fra **høyest til lavest risiko**. Hvilke tre scenarioer bør Oslofjord Helse prioritere å håndtere først? Begrunn hvorfor.
 
@@ -225,7 +241,9 @@ En god sikkerhetsstrategi handler ikke bare om å forebygge — men også om å 
     | **5. Varsling** | Hvem skal varsles (Datatilsynet, pasienter, politi)? | ... |
     | **6. Evaluering** | Hvordan sikrer man at det ikke skjer igjen? | ... |
 
-15. Hva bør Oslofjord Helse gjøre **akkurat nå** — før de har en full incident response-plan på plass? Lag en prioritert liste over umiddelbare tiltak (det som må gjøres innen 48 timer).
+#### Umiddelbare tiltak
+
+15. Før en full incident response-plan er på plass — hva bør Oslofjord Helse gjøre **akkurat nå**? Lag en prioritert liste over tiltak som må gjennomføres innen 48 timer.
 
 ---
 
@@ -237,7 +255,7 @@ En god sikkerhetsstrategi handler ikke bare om å forebygge — men også om å 
     - Anbefale 3–5 prioriterte tiltak med kortsiktig og langsiktig tidshorisont
     - Forklare hvorfor ledelsen må involveres i risikoaksept
 
-17. **Reflekter** over disse spørsmålene:
+17. **Reflekter** — velg 3–4 av følgende spørsmål og svar grundig:
     - Hva kunne Oslofjord Helse ha gjort annerledes for å **forebygge** phishing-angrepet?
     - Hvordan påvirker pasientjournalsystemets sårbarhet **personvernet** til 30 000 pasienter?
     - Hvilke samfunnsmessige konsekvenser har det når helsedata lekkes? Hvorfor er helsesektoren et spesielt attraktivt mål for angripere?
