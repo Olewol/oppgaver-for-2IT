@@ -3,9 +3,9 @@ title: "IP-plan og nettverkskart for Nordic Cloud Solutions"
 fag: driftsstotte
 emne: Nettverkssegmentering og dokumentasjon
 kompetansemaal:
-  - km-02
-  - km-05
-  - km-06
+  - Kompetansemål om nettverkssegmentering
+  - Kompetansemål om nettverksprotokoller
+  - Kompetansemål om planlegging og dokumentasjon
 vanskelighetsgrad: middels
 publisert: true
 dato: 2026-05-11
